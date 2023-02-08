@@ -70,8 +70,10 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Username</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Lastname</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Role</th>
                                     <th scope="col">Edit</th>
                                     <th scope="col">Delete</th>
@@ -146,6 +148,24 @@
                                                                                th:name="lastname" id="editLastname"
                                                                                placeholder="Username"
                                                                                th:value="${user.lastname}" required>
+                                                                    </label>
+                                                                </p>
+                                                                <p>
+                                                                    <label for="editAge">
+                                                                        <strong>Age</strong>
+                                                                        <input class="form-control" th:type="text"
+                                                                               th:name="age" id="editAge"
+                                                                               placeholder="Age"
+                                                                               th:value="${user.age}" required>
+                                                                    </label>
+                                                                </p>
+                                                                <p>
+                                                                    <label for="editEmail">
+                                                                        <strong>Email</strong>
+                                                                        <input class="form-control" th:type="text"
+                                                                               th:name="lastname" id="editEmail"
+                                                                               placeholder="Email"
+                                                                               th:value="${user.email}" required>
                                                                     </label>
                                                                 </p>
                                                                 <label class="container-fluid col-6"
@@ -284,7 +304,7 @@
                                     </p>
                                     <p>
                                         <label class="container-fluid col-6" for="name">
-                                            <strong>Name</strong>
+                                            <strong>First Name</strong>
                                             <input class="form-control" type="text"
                                                    name="name" id="name"
                                                    placeholder="name"
@@ -293,11 +313,29 @@
                                     </p>
                                     <p>
                                         <label class="container-fluid col-6" for="lastname">
-                                            <strong>Lastame</strong>
+                                            <strong>Last Name</strong>
                                             <input class="form-control" type="text"
                                                    name="lastname" id="lastname"
                                                    placeholder="lastname"
                                                    th:field="${newUser.lastname}" required>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label class="container-fluid col-6" for="age">
+                                            <strong>Age</strong>
+                                            <input class="form-control" type="text"
+                                                   name="age" id="age"
+                                                   placeholder="age"
+                                                   th:field="${newUser.age}" required>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label class="container-fluid col-6" for="email">
+                                            <strong>Email</strong>
+                                            <input class="form-control" type="text"
+                                                   name="email" id="email"
+                                                   placeholder="lastname"
+                                                   th:field="${newUser.email}" required>
                                         </label>
                                     </p>
                                     <p>

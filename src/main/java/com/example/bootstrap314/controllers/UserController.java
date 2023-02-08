@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String userPage(Model model, Principal principal){
-        User userByName = service.getUserByUsername(principal.getName());
+        User userByName = service.findByUsername(principal.getName());
         model.addAttribute("user", userByName);
 //        model.addAttribute("pageTitle", userByName.getUsername());
         return "show_user";
