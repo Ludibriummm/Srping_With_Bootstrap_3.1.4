@@ -23,22 +23,22 @@ public class UserController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute("user") User user) {
-        return "registration";
-    }
-
-    @PostMapping("/registration")
-    public String performRegistration(@ModelAttribute("user") User user) {
-        service.registration(user);
-        return "redirect:/login";
-    }
+//    @GetMapping("/registration")
+//    public String registrationPage(@ModelAttribute("user") User user) {
+//        return "registration";
+//    }
+//
+//    @PostMapping("/registration")
+//    public String performRegistration(@ModelAttribute("user") User user) {
+//        service.registration(user);
+//        return "redirect:/login";
+//    }
 
     @GetMapping("/user")
     public String userPage(Model model, Principal principal){
         User userByName = service.getUserByUsername(principal.getName());
         model.addAttribute("user", userByName);
-        model.addAttribute("pageTitle", userByName.getUsername());
-        return "userPage";
+//        model.addAttribute("pageTitle", userByName.getUsername());
+        return "show_user";
     }
 }

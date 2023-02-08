@@ -8,61 +8,44 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
-@RequestMapping("/admin")
+@RequestMapping()
 public class AdminController {
-    private final UserService service;
+    private final UserService usersService;
     private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserService service, RoleService roleService) {
-        this.service = service;
+    public AdminController(UserService usersService, RoleService roleService) {
+        this.usersService = usersService;
         this.roleService = roleService;
     }
-    @GetMapping
-    public String pageForAdmins(Model model){
-        model.addAttribute("users", service.getAllUsers());
-        return "admin";
-    }
-    @GetMapping("/new")
-    public String getUserCreateForm(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("roles", roleService.getRoles());
-        return "new_user";
+
+    @GetMapping("/admin")
+    public String getAdminPage(Model model, Principal principal) {
+        model.addAttribute("users", usersService.getAllUsers());
+        model.addAttribute("admin", usersService.getUserByUsername(principal.getName()));
+        model.addAttribute("newUser", new User());
+        model.addAttribute("rolesAdd", roleService.getRoles());
+        return "admin_page";
     }
 
-    @PostMapping("/createNew")
-    public String createUser(@ModelAttribute("user") User user,
-                             @RequestParam(value = "my_roles") String stringRole) {
-        service.createUser(user, stringRole);
+    @PostMapping("/admin")
+    public String createUser(@ModelAttribute("user") User user) {
+        usersService.saveUser(user);
         return "redirect:/admin";
     }
 
-    @GetMapping("/{id}/delete")
-    public String deleteUserById(@PathVariable("id")int id){
-        service.removeUserById(id);
+    @PatchMapping(value = "/admin/{id}")
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        usersService.updateUser(id, user);
         return "redirect:/admin";
     }
 
-    @GetMapping("/{id}")
-    public String showUserById(@PathVariable("id") int id, Model model){
-        model.addAttribute("userById", service.getUserById(id));
-        model.addAttribute("id", id);
-        model.addAttribute("pageTitle", service.getUserById(id).getUsername());
-        model.addAttribute("roles", roleService.getRoles());
-        return "userById";
-    }
-
-    @PostMapping(value = "/{id}/update")
-    public String updateUser(@ModelAttribute("userById") User user, @PathVariable("id") int id) {
-        user.setPassword(user.getPassword());
-        service.updateUser(id, user);
-        return "redirect:/admin";
-    }
-
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/admin/{id}/delete")
     public String removeUserById(@PathVariable("id") int id) {
-        roleService.removeRoleById(id);
-        service.removeUserById(id);
+        usersService.removeUserById(id);
         return "redirect:/admin";
     }
 }

@@ -10,9 +10,23 @@ public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String username;
+    private String username; //надо будет удалить, его заменит email
     private String password;
+    private String name;
+    private String lastname;
     private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private int age;
+
+//    private int age;
 
     public int getId() {
         return id;
@@ -32,6 +46,16 @@ public class User  {
         this.roles = roles;
     }
 
+    public User(String username, String password, String name, String lastname, String email, int age, Collection<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.age = age;
+        this.roles = roles;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -48,14 +72,6 @@ public class User  {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Collection<Role> getRoles() {
         return roles;
     }
@@ -64,11 +80,40 @@ public class User  {
         this.roles = roles;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
-        return "id=" + id +
+        return "User{" +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", email='" + email + '\'';
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

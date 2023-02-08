@@ -34,6 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             http
                 .csrf()
                 .disable()
+//                    .formLogin()
+//                    .loginPage("/login")
+//                    .usernameParameter("email")
+//                    .and()
                 .authorizeRequests()
                 //Доступ только для не зарегистрированных пользователей
                 .antMatchers("/login").not().fullyAuthenticated()
@@ -43,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
                 //Доступ разрешен всем пользователей
                 .antMatchers("/").permitAll()
-                .antMatchers("/registration").permitAll()
+//                .antMatchers("/registration").permitAll()
                 .antMatchers("/login").permitAll()
 
                 //Все остальные страницы требуют аутентификации
@@ -61,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable();
     }
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
