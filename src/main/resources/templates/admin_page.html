@@ -105,7 +105,7 @@
                                     <div class="modal fade" th:id="${'modalEdit'+user.id}">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form id="formEdit" th:method="PATCH"
+                                                <form id="formEdit" th:method="POST"
                                                       th:action="@{/admin/{id}(id=${user.id})}" th:object="${user}">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Edit user</h5>
@@ -120,7 +120,7 @@
                                                                         <strong>ID</strong>
                                                                         <input class="form-control" th:type="number"
                                                                                th:name="id" id="idEditUser"
-                                                                               th:value="${user.id}" disabled>
+                                                                               th:value="${user.id}" readonly>
                                                                     </label>
                                                                 </p>
                                                                 <p>
@@ -129,7 +129,9 @@
                                                                         <input class="form-control" th:type="text"
                                                                                th:name="username" id="editUsername"
                                                                                placeholder="Username"
-                                                                               th:value="${user.username}" required>
+                                                                               th:value="${user.username}" required
+                                                                               minlength="2"
+                                                                               maxlength="50">
                                                                     </label>
                                                                 </p>
                                                                 <p>
@@ -168,6 +170,14 @@
                                                                                th:value="${user.email}" required>
                                                                     </label>
                                                                 </p>
+                                                                <p>
+                                                                    <label for="password">
+                                                                        <strong>Password</strong>
+                                                                        <input type="password" class="form-control"
+                                                                            name="password" required minlength="3"
+                                                                            maxlength="20">
+                                                                    </label>
+                                                                <p/>
                                                                 <label class="container-fluid col-6"
                                                                        for="editUserRoles">
                                                                     <strong>Role</strong>
@@ -200,8 +210,8 @@
                                          aria-labelledby="edit" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
-                                                <form id="formDelete" th:method="DELETE"
-                                                      th:action="@{/admin/{id} (id=${user.id})}"
+                                                <form id="formDelete" th:method="POST"
+                                                      th:action="@{/admin/{id}/delete (id=${user.id})}"
                                                       th:object="${user}">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Delete user</h5>
@@ -307,7 +317,7 @@
                                             <strong>First Name</strong>
                                             <input class="form-control" type="text"
                                                    name="name" id="name"
-                                                   placeholder="name"
+                                                   placeholder="First name"
                                                    th:field="${newUser.name}" required>
                                         </label>
                                     </p>
@@ -316,7 +326,7 @@
                                             <strong>Last Name</strong>
                                             <input class="form-control" type="text"
                                                    name="lastname" id="lastname"
-                                                   placeholder="lastname"
+                                                   placeholder="Lastname"
                                                    th:field="${newUser.lastname}" required>
                                         </label>
                                     </p>
@@ -325,7 +335,7 @@
                                             <strong>Age</strong>
                                             <input class="form-control" type="text"
                                                    name="age" id="age"
-                                                   placeholder="age"
+                                                   placeholder="Age"
                                                    th:field="${newUser.age}" required>
                                         </label>
                                     </p>
@@ -334,7 +344,7 @@
                                             <strong>Email</strong>
                                             <input class="form-control" type="text"
                                                    name="email" id="email"
-                                                   placeholder="lastname"
+                                                   placeholder="Email"
                                                    th:field="${newUser.email}" required>
                                         </label>
                                     </p>
@@ -343,7 +353,7 @@
                                             <strong>Password</strong>
                                             <input class="form-control password" type="password"
                                                    name="password" id="password"
-                                                   placeholder="password"
+                                                   placeholder="Password"
                                                    th:field="${newUser.password}" required>
                                         </label>
                                     </p>
