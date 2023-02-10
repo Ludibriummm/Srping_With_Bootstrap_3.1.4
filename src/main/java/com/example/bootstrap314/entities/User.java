@@ -13,9 +13,10 @@ public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "name")
     private String username; //надо будет удалить, его заменит email
     private String password;
-    private String name;
+//    private String name;
     private String lastname;
     private String email;
 
@@ -49,10 +50,10 @@ public class User implements UserDetails{
         this.roles = roles;
     }
 
-    public User(String username, String password, String name, String lastname, String email, int age, Collection<Role> roles) {
+    public User(String username, String password, String lastname, String email, int age, Collection<Role> roles) {
         this.username = username;
         this.password = password;
-        this.name = name;
+//        this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.age = age;
@@ -107,14 +108,14 @@ public class User implements UserDetails{
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public String getLastname() {
         return lastname;
@@ -138,7 +139,7 @@ public class User implements UserDetails{
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
+//                ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +

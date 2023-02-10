@@ -69,7 +69,6 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Username</th>
                                     <th scope="col">First Name</th>
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Age</th>
@@ -83,7 +82,6 @@
                                 <tr th:each="user: ${users}">
                                     <td th:utext="${user.getId()}"></td>
                                     <td th:utext="${user.getUsername()}"></td>
-                                    <td th:utext="${user.getName()}"></td>
                                     <td th:utext="${user.getLastname()}"></td>
                                     <td th:utext="${user.getAge()}"></td>
                                     <td th:utext="${user.getEmail()}"></td>
@@ -124,23 +122,14 @@
                                                                     </label>
                                                                 </p>
                                                                 <p>
-                                                                    <label for="editUsername">
-                                                                        <strong>Username</strong>
+                                                                    <label for="editName">
+                                                                        <strong>First name</strong>
                                                                         <input class="form-control" th:type="text"
-                                                                               th:name="username" id="editUsername"
+                                                                               th:name="name" id="editName"
                                                                                placeholder="Username"
                                                                                th:value="${user.username}" required
                                                                                minlength="2"
                                                                                maxlength="50">
-                                                                    </label>
-                                                                </p>
-                                                                <p>
-                                                                    <label for="editName">
-                                                                        <strong>Name</strong>
-                                                                        <input class="form-control" th:type="text"
-                                                                               th:name="name" id="editName"
-                                                                               placeholder="Name"
-                                                                               th:value="${user.name}" required>
                                                                     </label>
                                                                 </p>
                                                                 <p>
@@ -231,25 +220,16 @@
                                                                     </label>
                                                                 </p>
                                                                 <p>
-                                                                    <label for="usernameDeleteUser">
-                                                                        <strong>Username</strong>
+                                                                    <label for="nameDeleteUser">
+                                                                        <strong>First name</strong>
                                                                         <input class="form-control" type="text"
                                                                                name="username"
-                                                                               id="usernameDeleteUser" disabled
+                                                                               id="nameDeleteUser" disabled
                                                                                th:type="text" th:name="username"
                                                                                th:value="${user.username}">
                                                                     </label>
                                                                 </p>
-                                                                <p>
-                                                                    <label for="nameDeleteUser">
-                                                                        <strong>Username</strong>
-                                                                        <input class="form-control" type="text"
-                                                                               name="name"
-                                                                               id="nameDeleteUser" disabled
-                                                                               th:type="text" th:name="name"
-                                                                               th:value="${user.name}">
-                                                                    </label>
-                                                                </p>
+
                                                                 <p>
                                                                     <label for="lastnameDeleteUser">
                                                                         <strong>Username</strong>
@@ -303,22 +283,22 @@
                                       th:action="@{/admin}"
                                       th:object="${userNew}"
                                       method="POST">
-                                    <p>
-                                        <label class="container-fluid col-6" for="username">
-                                            <strong>Username</strong>
-                                            <input class="form-control" type="text"
-                                                   name="username" id="username"
-                                                   placeholder="username"
-                                                   th:field="${newUser.username}" required>
-                                        </label>
-                                    </p>
+<!--                                    <p>-->
+<!--                                        <label class="container-fluid col-6" for="username">-->
+<!--                                            <strong>Username</strong>-->
+<!--                                            <input class="form-control" type="text"-->
+<!--                                                   name="username" id="username"-->
+<!--                                                   placeholder="username"-->
+<!--                                                   th:field="${newUser.username}" required>-->
+<!--                                        </label>-->
+<!--                                    </p>-->
                                     <p>
                                         <label class="container-fluid col-6" for="name">
                                             <strong>First Name</strong>
                                             <input class="form-control" type="text"
                                                    name="name" id="name"
                                                    placeholder="First name"
-                                                   th:field="${newUser.name}" required>
+                                                   th:field="${newUser.username}" required>
                                         </label>
                                     </p>
                                     <p>
@@ -392,7 +372,6 @@
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Username</th>
                             <th scope="col">Name</th>
                             <th scope="col">Lastname</th>
                             <th scope="col">Role</th>
@@ -402,7 +381,6 @@
                         <tr>
                             <td th:utext="${admin.getId()}"></td>
                             <td th:utext="${admin.getUsername()}"></td>
-                            <td th:utext="${admin.getName()}"></td>
                             <td th:utext="${admin.getLastname()}"></td>
                             <td th:utext="${admin.getRoles()}"></td>
                         </tr>
