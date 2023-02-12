@@ -37,13 +37,13 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping(value = "/admin/{id}")
+    @PatchMapping(value = "/admin/{id}")
     public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         usersService.update(user);
         return "redirect:/admin";
     }
 
-    @PostMapping("/admin/{id}/delete")
+    @DeleteMapping("/admin/{id}/delete")
     public String removeUserById(@PathVariable("id") int id) {
         usersService.delete(id);
         return "redirect:/admin";

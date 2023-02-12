@@ -103,7 +103,8 @@
                                     <div class="modal fade" th:id="${'modalEdit'+user.id}">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form id="formEdit" th:method="POST"
+                                                <form id="formEdit" th:method="PATCH"
+                                                      action="#"
                                                       th:action="@{/admin/{id}(id=${user.id})}" th:object="${user}">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Edit user</h5>
@@ -125,7 +126,7 @@
                                                                     <label for="editName">
                                                                         <strong>First name</strong>
                                                                         <input class="form-control" th:type="text"
-                                                                               th:name="name" id="editName"
+                                                                               th:name="username" id="editName"
                                                                                placeholder="Username"
                                                                                th:value="${user.username}" required
                                                                                minlength="2"
@@ -154,7 +155,7 @@
                                                                     <label for="editEmail">
                                                                         <strong>Email</strong>
                                                                         <input class="form-control" th:type="text"
-                                                                               th:name="lastname" id="editEmail"
+                                                                               th:name="email" id="editEmail"
                                                                                placeholder="Email"
                                                                                th:value="${user.email}" required>
                                                                     </label>
@@ -199,7 +200,7 @@
                                          aria-labelledby="edit" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
-                                                <form id="formDelete" th:method="POST"
+                                                <form id="formDelete" th:method="DELETE"
                                                       th:action="@{/admin/{id}/delete (id=${user.id})}"
                                                       th:object="${user}">
                                                     <div class="modal-header">
@@ -372,17 +373,21 @@
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Lastname</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Role</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td th:utext="${admin.getId()}"></td>
-                            <td th:utext="${admin.getUsername()}"></td>
-                            <td th:utext="${admin.getLastname()}"></td>
-                            <td th:utext="${admin.getRoles()}"></td>
+                            <td th:text="${admin.getId}"></td>
+                            <td th:text="${admin.getUsername()}"></td>
+                            <td th:text="${admin.getLastname()}"></td>
+                            <td th:text="${admin.getAge()}"></td>
+                            <td th:text="${admin.getEmail()}"></td>
+                            <td th:text="${admin.getRoles()}"></td>
                         </tr>
                         </tbody>
                     </table>
