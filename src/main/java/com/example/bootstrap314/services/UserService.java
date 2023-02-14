@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService extends UserDetailsService {
     boolean save(User user);
     List<User> getAllUsers();
-    User update(User user);
+    void update(User user);
     User getById(int id);
     boolean delete(int id);
     User findByUsername(String name);

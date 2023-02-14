@@ -30,7 +30,6 @@ public class User implements UserDetails{
 
     private int age;
 
-//    private int age;
 
     public int getId() {
         return id;
@@ -53,7 +52,6 @@ public class User implements UserDetails{
     public User(String username, String password, String lastname, String email, int age, Collection<Role> roles) {
         this.username = username;
         this.password = password;
-//        this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.age = age;

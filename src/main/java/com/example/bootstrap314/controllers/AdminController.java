@@ -38,8 +38,14 @@ public class AdminController {
     }
 
     @PatchMapping(value = "/admin/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        usersService.update(user);
+    public String updateUser(@ModelAttribute("user") User updatedUser, @PathVariable("id") int id) {
+        User existingUser = usersService.getById(id);
+        existingUser.setUsername(updatedUser.getUsername());
+        existingUser.setEmail(updatedUser.getEmail());
+        existingUser.setLastname(updatedUser.getLastname());
+        existingUser.setAge(updatedUser.getAge());
+        existingUser.setRoles(updatedUser.getRoles());
+        usersService.update(existingUser);
         return "redirect:/admin";
     }
 
