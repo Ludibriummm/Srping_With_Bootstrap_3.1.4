@@ -2,6 +2,7 @@ package com.example.bootstrap314.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -35,7 +36,8 @@ public class User implements UserDetails{
         return id;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+            (fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -99,6 +101,7 @@ public class User implements UserDetails{
         this.password = password;
     }
 
+    @Transactional
     public Collection<Role> getRoles() {
         return roles;
     }
@@ -106,15 +109,6 @@ public class User implements UserDetails{
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-
     public String getLastname() {
         return lastname;
     }
@@ -137,7 +131,6 @@ public class User implements UserDetails{
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-//                ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
