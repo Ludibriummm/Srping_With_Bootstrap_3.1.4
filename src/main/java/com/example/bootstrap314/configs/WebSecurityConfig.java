@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
+@Configuration
 @EnableWebSecurity
 @EnableTransactionManagement
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
