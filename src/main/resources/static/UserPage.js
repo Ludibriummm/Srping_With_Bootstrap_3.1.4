@@ -8,14 +8,14 @@ async function thisUser() {
         .then(data => {
             // Добавляем информацию в шапку
             $('#headerUsername').append(data.email);
-            let roles = data.roles.map(role => " " + role.name.substring(5));
+            let roles = data.roles.map(role => " " + role.role.substring(5));
             $('#headerRoles').append(roles);
 
             //Добавляем информацию в таблицу
             let user = `$(
             <tr>
                 <td>${data.id}</td>
-                <td>${data.firstName}</td>
+                <td>${data.username}</td>
                 <td>${data.lastName}</td>
                 <td>${data.age}</td>
                 <td>${data.email}</td>

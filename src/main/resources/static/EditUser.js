@@ -11,7 +11,7 @@ function editUser() {
         for (let i = 0; i < editForm.roles.options.length; i++) {
             if (editForm.roles.options[i].selected) editUserRoles.push({
                 id: editForm.roles.options[i].value,
-                name: editForm.roles.options[i].name
+                role: editForm.roles.options[i].role
             })
         }
 
@@ -22,7 +22,7 @@ function editUser() {
             },
             body: JSON.stringify({
                 id: editForm.id.value,
-                firstName: editForm.firstName.value,
+                username: editForm.username.value,
                 lastName: editForm.lastName.value,
                 age: editForm.age.value,
                 email: editForm.email.value,

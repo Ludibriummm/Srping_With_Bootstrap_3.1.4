@@ -25,7 +25,7 @@ public class RestAPIController {
     }
 
     @GetMapping("/admin")
-    public ResponseEntity<Collection<User>> showAllUsers(){
+    public ResponseEntity<List<User>> showAllUsers(){
         List<User> allUsers = usersService.getAllUsers();
         return (allUsers != null && !allUsers.isEmpty())
                 ? new ResponseEntity<>(allUsers, HttpStatus.OK)
@@ -38,7 +38,7 @@ public class RestAPIController {
         return userById;
     }
 
-    @PostMapping("/admin/users")
+    @PostMapping("/admin")
     public ResponseEntity<User> newUser(@RequestBody User user){
         usersService.save(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -49,7 +49,7 @@ public class RestAPIController {
         usersService.update(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/admin/users/{id}")
+    @DeleteMapping("/admin/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable int id){
         if(usersService.getById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

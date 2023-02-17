@@ -17,8 +17,8 @@ public class User implements UserDetails{
     @Column(name = "name")
     private String username; //надо будет удалить, его заменит email
     private String password;
-//    private String name;
-    private String lastname;
+    @Column(name = "lastname")
+    private String lastName;
     private String email;
 
     public String getEmail() {
@@ -51,10 +51,10 @@ public class User implements UserDetails{
         this.roles = roles;
     }
 
-    public User(String username, String password, String lastname, String email, int age, Collection<Role> roles) {
+    public User(String username, String password, String lastName, String email, int age, Collection<Role> roles) {
         this.username = username;
         this.password = password;
-        this.lastname = lastname;
+        this.lastName = lastName;
         this.email = email;
         this.age = age;
         this.roles = roles;
@@ -109,12 +109,12 @@ public class User implements UserDetails{
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -131,7 +131,7 @@ public class User implements UserDetails{
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", lastname='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 '}';

@@ -8,7 +8,7 @@ async function newUser() {
         .then(roles => {
             roles.forEach(role => {
                 let el = document.createElement("option");
-                el.text = role.name.substring(5);
+                el.text = role.role.substring(5);
                 el.value = role.id;
                 $('#newUserRoles')[0].appendChild(el);
             })
@@ -24,7 +24,7 @@ async function newUser() {
         for (let i = 0; i < form.roles.options.length; i++) {
             if (form.roles.options[i].selected) newUserRoles.push({
                 id: form.roles.options[i].value,
-                name: form.roles.options[i].name
+                role: form.roles.options[i].role
             })
         }
         fetch("http://localhost:8080/api/admin", {
@@ -33,7 +33,7 @@ async function newUser() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                firstName: form.firstName.value,
+                username: form.username.value,
                 lastName: form.lastName.value,
                 age: form.age.value,
                 email: form.email.value,

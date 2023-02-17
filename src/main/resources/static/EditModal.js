@@ -8,7 +8,7 @@ async function showEditModal(id) {
     let user = await getUser(id);
     let form = document.forms["formEditUser"];
     form.id.value = user.id;
-    form.firstName.value = user.firstName;
+    form.username.value = user.username;
     form.lastName.value = user.lastName;
     form.age.value = user.age;
     form.email.value = user.email;
@@ -22,13 +22,13 @@ async function showEditModal(id) {
             roles.forEach(role => {
                 let selectedRole = false;
                 for (let i = 0; i < user.roles.length; i++) {
-                    if (user.roles[i].name === role.name) {
+                    if (user.roles[i].role === role.role) {
                         selectedRole = true;
                         break;
                     }
                 }
                 let el = document.createElement("option");
-                el.text = role.name.substring(5);
+                el.text = role.role.substring(5);
                 el.value = role.id;
                 if (selectedRole) el.selected = true;
                 $('#rolesEditUser')[0].appendChild(el);
