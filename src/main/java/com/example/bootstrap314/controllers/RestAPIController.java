@@ -45,7 +45,7 @@ public class RestAPIController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PatchMapping("/admin")
+    @PatchMapping("/admin/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user){
         usersService.update(user);
         return new ResponseEntity<>(HttpStatus.OK);
