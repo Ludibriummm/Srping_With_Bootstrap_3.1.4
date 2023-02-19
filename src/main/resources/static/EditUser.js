@@ -16,13 +16,13 @@ function editUser() {
         }
 
         fetch("http://localhost:8080/api/admin/" + editForm.id.value, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 id: editForm.id.value,
-                username: editForm.username.value,
+                username: editForm.firstName.value,
                 lastName: editForm.lastName.value,
                 age: editForm.age.value,
                 email: editForm.email.value,

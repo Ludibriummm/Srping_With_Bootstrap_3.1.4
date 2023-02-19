@@ -1,6 +1,7 @@
 package com.example.bootstrap314.services;
 
 
+import com.example.bootstrap314.entities.Role;
 import com.example.bootstrap314.entities.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -13,4 +14,6 @@ public interface UserService extends UserDetailsService {
     User getById(int id);
     boolean delete(int id);
     User findByUsername(String name);
+
+    List<Role> getAllRoles();
 }

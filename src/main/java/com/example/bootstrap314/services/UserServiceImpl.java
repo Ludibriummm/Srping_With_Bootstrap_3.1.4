@@ -6,14 +6,12 @@ import com.example.bootstrap314.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,10 +21,13 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    private final RoleService roleService;
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, @Lazy BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, @Lazy BCryptPasswordEncoder bCryptPasswordEncoder, RoleService roleService) {
         this.userRepository = userRepository;
         this.passwordEncoder = bCryptPasswordEncoder;
+        this.roleService = roleService;
     }
     @Transactional(propagation= Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
     @Override
@@ -84,7 +85,9 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
-
+    public List<Role> getAllRoles() {
+        return roleService.getAllRoles();
+    }
     @Override
     @Transactional
     public User findByUsername(String name) {

@@ -10,4 +10,5 @@ public interface RoleService {
     void saveRole(Role roleAdmin);
 
     void removeRoleById(int id);
+    List<Role> getAllRoles();
 }

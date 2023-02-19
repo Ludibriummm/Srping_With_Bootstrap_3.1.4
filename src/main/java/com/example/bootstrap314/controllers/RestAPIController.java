@@ -1,5 +1,6 @@
 package com.example.bootstrap314.controllers;
 
+import com.example.bootstrap314.entities.Role;
 import com.example.bootstrap314.entities.User;
 import com.example.bootstrap314.services.RoleService;
 import com.example.bootstrap314.services.UserService;
@@ -44,7 +45,7 @@ public class RestAPIController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/admin")
+    @PatchMapping("/admin")
     public ResponseEntity<User> updateUser(@RequestBody User user){
         usersService.update(user);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -62,6 +63,11 @@ public class RestAPIController {
     public ResponseEntity<User> getUserByUsername(Principal principal) {
         System.out.println(principal.getName());
         return new ResponseEntity<>(usersService.findByUsername(principal.getName()), HttpStatus.OK);
+    }
+
+    @GetMapping("/roles")
+    public ResponseEntity<List<Role>> getAllRoles() {
+        return new ResponseEntity<>(usersService.getAllRoles(), HttpStatus.OK);
     }
 
 //    @GetMapping("/admin")
